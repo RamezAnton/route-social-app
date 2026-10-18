@@ -1,0 +1,199 @@
+.notFound {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 60vh;
+  padding: 1.5em 0;
+  text-align: center;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.title {
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.text {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 1rem;
+  /* font-weight: 500; */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.link {
+  justify-self: center;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: 0.5em;
+  padding: 0.5em 1.25em;
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+  transition: all var(--trans-dur, 0.3s);
+}
+
+.link:hover {
+  opacity: 0.85;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  border-color: var(--accent);
+}
+
+.face {
+  display: block;
+  width: 12em;
+  height: auto;
+  color: var(--foreground);
+}
+
+.faceEyes,
+.faceEyeLid,
+.faceMouthLeft,
+.faceMouthRight,
+.faceNose,
+.facePupil {
+  animation-name: eyes;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  animation-fill-mode: forwards;
+}
+
+.faceEyeLid,
+.facePupil {
+  animation-duration: 4s;
+  animation-delay: 1.3s;
+  animation-iteration-count: infinite;
+}
+
+.faceEyeLid {
+  animation-name: eyeLid;
+}
+
+.facePupil {
+  animation-name: pupil;
+}
+
+.faceMouthLeft,
+.faceMouthRight {
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.faceMouthLeft {
+  animation-name: mouthLeft;
+}
+
+.faceMouthRight {
+  animation-name: mouthRight;
+}
+
+.faceNose {
+  animation-name: nose;
+}
+
+/* Animations */
+
+@keyframes eyeLid {
+  from,
+  40%,
+  45%,
+  to {
+    transform: translateY(0);
+  }
+
+  42.5% {
+    transform: translateY(17.5px);
+  }
+}
+
+@keyframes eyes {
+  from {
+    transform: translateY(112.5px);
+  }
+
+  to {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes pupil {
+  from,
+  37.5%,
+  40%,
+  45%,
+  87.5%,
+  to {
+    stroke-dashoffset: 0;
+    transform: translate(0, 0);
+  }
+
+  12.5%,
+  25%,
+  62.5%,
+  75% {
+    stroke-dashoffset: 0;
+    transform: translate(-35px, 0);
+  }
+
+  42.5% {
+    stroke-dashoffset: 35;
+    transform: translate(0, 17.5px);
+  }
+}
+
+@keyframes mouthLeft {
+  from,
+  50% {
+    stroke-dashoffset: -102;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mouthRight {
+  from,
+  50% {
+    stroke-dashoffset: 102;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nose {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(0, 22.5px);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .faceEyes {
+    transform: translateY(15px);
+  }
+  .faceNose {
+    transform: translateY(22.5px);
+  }
+  .faceMouthLeft,
+  .faceMouthRight {
+    stroke-dashoffset: 0;
+  }
+  .faceEyes,
+  .faceEyeLid,
+  .faceMouthLeft,
+  .faceMouthRight,
+  .faceNose,
+  .facePupil {
+    animation: none;
+  }
+}
